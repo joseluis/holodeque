@@ -59,9 +59,9 @@
 //! - `serde`
 //!   - Optional
 //!   - Provides:
-//!     - [`Serialize`](serde::Serialize) for `ArrayDeque` and `SliceDeque`
-//!     - [`Deserialize`](serde::Deserialize) for `ArrayDeque`
-//!     - [`DeserializeSeed`](serde::de::DeserializeSeed) for `SliceDeque`
+//!     - [`Serialize`][serde::Serialize] for `ArrayDeque` and `SliceDeque`
+//!     - [`Deserialize`][serde::Deserialize] for `ArrayDeque`
+//!     - [`DeserializeSeed`][serde::de::DeserializeSeed] for `SliceDeque`
 //!
 //! [`Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
 //!
@@ -76,7 +76,12 @@
 //! [`arrayvec::ArrayVec`]: https://docs.rs/arrayvec
 //! [`MaybeUninit`]: https://doc.rust-lang.org/core/mem/union.MaybeUninit.html
 //! [`tinyvec`]: https://docs.rs/tinyvec
-
+#![cfg_attr(
+    not(feature = "serde"),
+    doc = "[serde::Serialize]: https://docs.rs/serde/latest/serde/trait.Serialize.html
+[serde::Deserialize]: https://docs.rs/serde/latest/serde/trait.Serialize.html
+[serde::de::DeserializeSeed]: https://docs.rs/serde/latest/serde/de/trait.DeserializeSeed.html"
+)]
 #![forbid(unsafe_code)]
 #![warn(missing_docs)]
 #![cfg_attr(not(feature = "std"), no_std)]
