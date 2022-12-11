@@ -121,11 +121,9 @@ where
     ///
     /// ```
     /// # use holodeque::ArrayDeque;
-    /// # fn main() {
     /// let mut deque: ArrayDeque<String, 8> = ArrayDeque::new();
     ///
     /// assert!(deque.is_empty());
-    /// # }
     /// ```
     pub fn new() -> Self {
         ArrayDeque {
@@ -143,12 +141,10 @@ where
     /// # Example
     ///
     /// ```
-    /// use holodeque::ArrayDeque;
-    /// # fn main() {
+    /// # use holodeque::ArrayDeque;
     /// let mut deque: ArrayDeque<(), 42> = ArrayDeque::new();
     ///
     /// assert_eq!(deque.capacity(), 42);
-    /// # }
     /// ```
     #[inline]
     pub fn capacity(&self) -> usize {
@@ -161,7 +157,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<char, 3> = ArrayDeque::new();
     ///
@@ -172,7 +167,6 @@ where
     /// assert_eq!(deque.len(), 3);
     /// # Ok(())
     /// # })().unwrap()
-    /// # }
     /// ```
     #[inline]
     pub fn len(&self) -> usize {
@@ -185,7 +179,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 8> = ArrayDeque::new();
     ///
@@ -195,7 +188,6 @@ where
     /// assert!(deque.is_empty());
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn is_empty(&self) -> bool {
@@ -208,7 +200,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main()  {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 4> = ArrayDeque::new();
     ///
@@ -221,7 +212,6 @@ where
     /// assert!(deque.is_full());
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn is_full(&self) -> bool {
@@ -236,7 +226,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<char, 3> = ArrayDeque::new();
     ///
@@ -247,7 +236,6 @@ where
     /// assert_eq!(deque.front(), Some(&'a'));
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn front(&self) -> Option<&T> {
@@ -262,7 +250,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<&str, 4> = ArrayDeque::new();
     ///
@@ -272,10 +259,8 @@ where
     /// });
     ///
     /// assert_eq!(deque.front(), Some(&"new"));
-    ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn front_mut(&mut self) -> Option<&mut T> {
@@ -290,7 +275,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<char, 3> = ArrayDeque::new();
     ///
@@ -301,7 +285,6 @@ where
     /// assert_eq!(deque.back(), Some(&'c'));
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn back(&self) -> Option<&T> {
@@ -316,7 +299,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<&str, 4> = ArrayDeque::new();
     ///
@@ -329,7 +311,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn back_mut(&mut self) -> Option<&mut T> {
@@ -343,7 +324,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 6> = ArrayDeque::new();
     ///
@@ -359,7 +339,6 @@ where
     /// assert_eq!(second, &[5, 10, 15]);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn as_slices(&self) -> (&[T], &[T]) {
@@ -373,7 +352,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 6> = ArrayDeque::new();
     ///
@@ -397,7 +375,6 @@ where
     /// assert_eq!(second, &[6, 11, 16]);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn as_mut_slices(&mut self) -> (&mut [T], &mut [T]) {
@@ -413,7 +390,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 3> = ArrayDeque::new();
     ///
@@ -429,7 +405,6 @@ where
     /// assert_eq!(err.into_inner(), 4);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn push_front(&mut self, item: T) -> Result<(), CapacityError<T>> {
@@ -445,7 +420,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 3> = ArrayDeque::new();
     ///
@@ -461,7 +435,6 @@ where
     /// assert_eq!(err.into_inner(), 4);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn push_back(&mut self, item: T) -> Result<(), CapacityError<T>> {
@@ -476,7 +449,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 3> = ArrayDeque::new();
     ///
@@ -491,7 +463,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn pop_front(&mut self) -> Option<T> {
@@ -506,7 +477,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 3> = ArrayDeque::new();
     ///
@@ -521,7 +491,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn pop_back(&mut self) -> Option<T> {
@@ -534,7 +503,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<usize, 8> = ArrayDeque::new();
     ///
@@ -549,7 +517,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn clear(&mut self) {
@@ -566,7 +533,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<usize, 8> = ArrayDeque::new();
     ///
@@ -582,7 +548,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn truncate(&mut self, len: usize) {
@@ -595,7 +560,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<&str, 5> = ArrayDeque::new();
     ///
@@ -613,7 +577,6 @@ where
     /// );
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn iter(&self) -> Iter<'_, T, N> {
@@ -639,7 +602,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 5> = ArrayDeque::new();
     ///
@@ -660,7 +622,6 @@ where
     /// assert_eq!(deque.len(), 2);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn drain_front(&mut self, n: usize) -> Option<DrainFront<'_, T, N>> {
@@ -686,7 +647,6 @@ where
     ///
     /// ```
     /// # use holodeque::{ArrayDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut deque: ArrayDeque<u32, 5> = ArrayDeque::new();
     ///
@@ -707,7 +667,6 @@ where
     /// assert_eq!(deque.len(), 2);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn drain_back(&mut self, n: usize) -> Option<DrainBack<'_, T, N>> {

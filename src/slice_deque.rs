@@ -59,18 +59,14 @@ impl Meta for SliceMeta {
 ///
 /// The capacity of the deque is determined by the length of the slice.
 ///
-/// A `SliceDeque` can be initialized with the elements in the slice.
-///
-/// # Example
+/// A `SliceDeque` can be initialized from a slice:
 /// ```
 /// # use holodeque::SliceDeque;
-/// # fn main() {
 /// let mut slice = ["these", "values", "will", "stay"];
 /// let mut deque = SliceDeque::from(&mut slice);
 ///
 /// assert!(deque.is_full());
 /// assert_eq!(deque.len(), 4);
-/// # }
 /// ```
 #[derive(Debug)]
 pub struct SliceDeque<'a, T>
@@ -125,13 +121,11 @@ where
     /// # Example
     /// ```
     /// # use holodeque::SliceDeque;
-    /// # fn main() {
     /// let mut slice = ["these", "values", "will", "disappear"];
     /// let mut deque = SliceDeque::new_in(&mut slice);
     ///
     /// assert!(deque.is_empty());
     /// assert_eq!(deque.capacity(), 4);
-    /// # }
     /// ```
     pub fn new_in(slice: &'a mut [T]) -> SliceDeque<'a, T> {
         let meta = SliceMeta::empty(slice.len());
@@ -151,12 +145,10 @@ where
     /// # Example
     /// ```
     /// # use holodeque::SliceDeque;
-    /// # fn main() {
     /// let mut slice = [(), (), (), ()];
     /// let mut deque = SliceDeque::new_in(&mut slice);
     ///
     /// assert_eq!(deque.capacity(), 4);
-    /// # }
     /// ```
     #[inline]
     pub fn capacity(&self) -> usize {
@@ -169,7 +161,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -181,7 +172,6 @@ where
     /// assert_eq!(deque.len(), 3);
     /// # Ok(())
     /// # })().unwrap()
-    /// # }
     /// ```
     #[inline]
     pub fn len(&self) -> usize {
@@ -194,7 +184,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -205,7 +194,6 @@ where
     /// assert!(deque.is_empty());
     /// # Ok(())
     /// # })().unwrap()
-    /// # }
     /// ```
     #[inline]
     pub fn is_empty(&self) -> bool {
@@ -218,7 +206,6 @@ where
     ///
     /// ```
     /// # use holodeque::{SliceDeque, CapacityError};
-    /// # fn main()  {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -232,7 +219,6 @@ where
     /// assert!(deque.is_full());
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn is_full(&self) -> bool {
@@ -247,7 +233,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = ['\0', '\0', '\0'];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -259,7 +244,6 @@ where
     /// assert_eq!(deque.front(), Some(&'a'));
     /// # Ok(())
     /// # })().unwrap()
-    /// # }
     /// ```
     #[inline]
     pub fn front(&self) -> Option<&T> {
@@ -274,7 +258,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = ["", "", "", ""];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -288,7 +271,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn front_mut(&mut self) -> Option<&mut T> {
@@ -303,7 +285,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = ['\0', '\0', '\0'];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -315,7 +296,6 @@ where
     /// assert_eq!(deque.back(), Some(&'c'));
     /// # Ok(())
     /// # })().unwrap()
-    /// # }
     /// ```
     #[inline]
     pub fn back(&self) -> Option<&T> {
@@ -330,7 +310,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = ["", "", "", ""];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -344,7 +323,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn back_mut(&mut self) -> Option<&mut T> {
@@ -358,7 +336,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -375,7 +352,6 @@ where
     /// assert_eq!(second, &[5, 10, 15]);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn as_slices(&self) -> (&[T], &[T]) {
@@ -389,7 +365,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -414,7 +389,6 @@ where
     /// assert_eq!(second, &[6, 11, 16]);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn as_mut_slices(&mut self) -> (&mut [T], &mut [T]) {
@@ -430,7 +404,6 @@ where
     ///
     /// ```
     /// # use holodeque::{SliceDeque, CapacityError};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -447,7 +420,6 @@ where
     /// assert_eq!(err.into_inner(), 4);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn push_front(&mut self, item: T) -> Result<(), CapacityError<T>> {
@@ -463,7 +435,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -481,7 +452,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn push_back(&mut self, item: T) -> Result<(), CapacityError<T>> {
@@ -496,7 +466,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -512,7 +481,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn pop_front(&mut self) -> Option<T> {
@@ -527,7 +495,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -543,7 +510,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn pop_back(&mut self) -> Option<T> {
@@ -556,7 +522,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0, 0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -572,7 +537,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn clear(&mut self) {
@@ -589,7 +553,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0, 0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -606,7 +569,6 @@ where
     ///
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn truncate(&mut self, len: usize) {
@@ -619,7 +581,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = ["", "", "", "", ""];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -638,7 +599,6 @@ where
     /// );
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn iter(&self) -> Iter<'_, 'a, T> {
@@ -664,7 +624,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -686,7 +645,6 @@ where
     /// assert_eq!(deque.len(), 2);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn drain_front(&mut self, n: usize) -> Option<DrainFront<'_, 'a, T>> {
@@ -712,7 +670,6 @@ where
     ///
     /// ```
     /// # use holodeque::{CapacityError, SliceDeque};
-    /// # fn main() {
     /// # (|| -> Result<(), CapacityError<_>> {
     /// let mut slice = [0, 0, 0, 0, 0];
     /// let mut deque = SliceDeque::new_in(&mut slice);
@@ -734,7 +691,6 @@ where
     /// assert_eq!(deque.len(), 2);
     /// # Ok(())
     /// # })().unwrap();
-    /// # }
     /// ```
     #[inline]
     pub fn drain_back(&mut self, n: usize) -> Option<DrainBack<'_, 'a, T>> {
