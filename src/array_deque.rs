@@ -5,7 +5,7 @@ use crate::{
     BaseDeque, CapacityError, DequeDrain, DequeIter,
 };
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Copy, Debug)]
 pub(crate) struct ArrayMeta<const N: usize> {
     layout: MetaLayout,
 }
@@ -26,6 +26,8 @@ impl<const N: usize> Meta for ArrayMeta<N> {
         self.layout = layout;
     }
 }
+
+impl<T: Copy + Default, const N: usize> Copy for ArrayDeque<T, N> {}
 
 /// A double-ended queue with fixed capacity, backed by an array.
 ///
